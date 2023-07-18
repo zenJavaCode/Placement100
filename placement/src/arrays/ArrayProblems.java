@@ -40,8 +40,48 @@ public class ArrayProblems {
                 return array.length-1;
         }
 
-        
+        /*Largest Element in  an Array.*/
 
+        public int largestElement(int[] array){
+
+                int max = Integer.MIN_VALUE;
+                int i ;
+                for( i=0;i<array.length;i++){
+
+                        if(array[i]>max){
+                                max=array[i];
+                        }
+                }
+                return max;
+        }
+        /*Largest element index in an array in single loop or Big O(n).*/
+
+        public static int largestElementIndex(int[] array){
+        int result =0;
+        for(int i=0;i<array.length;i++){
+                if(array[i]>array[result]){
+                        result=i;
+                }
+        }
+        return result;
+        }
+
+        /*Second-Largest Element in an array in Big O(n) */
+
+        public static int secondLargestElementIndex(int[] array){
+        int result =-1;
+        int largestElementIndex =largestElementIndex(array);
+        for(int i=0;i<array.length;i++){
+                if(array[i]!=array[largestElementIndex]){
+                        if(result==-1){
+                                result=i;
+                        } else if(array[i]>array[result]){
+                                result=i;
+                        }
+                }
+        }
+        return result;
+        }
 
 
 
