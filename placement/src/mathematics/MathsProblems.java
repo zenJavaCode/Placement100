@@ -1,10 +1,13 @@
 package mathematics;
 
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class MathsProblems {
 
@@ -13,7 +16,12 @@ public class MathsProblems {
         //   System.out.println(isPalindromeNumber(78988));
         //    System.out.println(isPalindromeStringUsingTwoPointer("PAWAP"));
         //   System.out.println(trailingZeroInTheEnd(251));
-        System.out.println(lcmBruteForce(4, 6));
+     //   System.out.println(lcmBruteForce(4, 6));
+     //   quadraticRoots(752 ,904 ,164);
+      //  System.out.println(factorialOfNumber(42));
+        System.out.println(exactly3Divisors(10));
+
+
 
     }
 
@@ -127,16 +135,22 @@ public class MathsProblems {
 
     // factorial of Number brute force
 
-    public static Long factorialOfNumber(int num) {
+    public static int factorialOfNumber(int num) {
 
-        Long result = 0L;
-        for (int i = num; i > 0; i--) {
-            int sum = num * num - 1;
-            result += Long.parseLong(String.valueOf(sum));
+        if (num < 0) {
+            throw new IllegalArgumentException("Factorial is not defined for negative numbers.");
         }
-        return result;
+
+        BigInteger factorial = BigInteger.ONE;
+        for (int i = 2; i <= num; i++) {
+            factorial = factorial.multiply(BigInteger.valueOf(i));
+        }
+
+        return factorial.toString().length();
 
     }
+
+
 
     // factorial of a number using recursion
 
@@ -211,6 +225,70 @@ public class MathsProblems {
         return true;
     }
 
+    // roots of a quadratic equation
+    public static ArrayList<Integer> quadraticRoots(int a, int b, int c) {
+        // code here
+        Integer det =  b * b - 4 * a * c;
+        Double first =  ((-b + Math.sqrt(det)) / (2 * a));
+        Double second =  ((-b - Math.sqrt(det)) / (2 * a));
+        Integer v =(int)Math.floor(first);
+        Integer x = (int)Math.floor(second);
+        second.intValue();
+        ArrayList<Integer> result = new ArrayList<>();
+        result.add(Math.toIntExact(Math.round(first)));
+        result.add(Math.toIntExact(Math.round(second)));
+        return result;
+
+    }
+
+
+    //Exactly 3 divisors
+    public static int exactly3Divisors(int N)
+    {
+        //Your code here
+        int count = 0;
+        for (int num = 2; num * num <= N; num++) {
+            if (isPrime(num)) {
+                // If num is prime and its square is less than or equal to N,
+                // then it has exactly 3 divisors (1, num, and num*num)
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int countNumbersWith3Divisors(int N) {
+        int count = 0;
+        for (int num = 2; num <= N; num++) {
+            if (isPrimeCorrect(num)) {
+                int square = num * num;
+                if (square <= N) {
+                    count++;
+                } else {
+                    break; // No need to check further as the square exceeds N
+                }
+            }
+        }
+        return count;
+    }
+
+    public boolean isPrimeCorrect(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        if (num <= 3) {
+            return true;
+        }
+        if (num % 2 == 0 || num % 3 == 0) {
+            return false;
+        }
+        for (int i = 5; i * i <= num; i += 6) {
+            if (num % i == 0 || num % (i + 2) == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 
 }
