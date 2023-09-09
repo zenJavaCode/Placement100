@@ -19,7 +19,8 @@ public class MathsProblems {
      //   System.out.println(lcmBruteForce(4, 6));
      //   quadraticRoots(752 ,904 ,164);
       //  System.out.println(factorialOfNumber(42));
-        System.out.println(exactly3Divisors(10));
+        //System.out.println(exactly3Divisors(10));
+        System.out.println(termOfGP(84,87,3));
 
 
 
@@ -287,8 +288,24 @@ public class MathsProblems {
                 return false;
             }
         }
+
         return true;
     }
+
+
+    //nth term of a GP
+    public static double termOfGP(int A,int B,int N)
+    {
+        //Your code here
+        if(N ==1)return A;
+        if(N==2) return B;
+        double r = B/A;
+
+        return  A* Math.pow(r,N-1);
+
+
+    }
+
 
 
 }
