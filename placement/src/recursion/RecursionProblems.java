@@ -2,6 +2,12 @@ package recursion;
 
 public class RecursionProblems {
 
+
+    /*Whenever we call a recursion function there is an initialization
+    * and there must be a base condition to terminate the function
+    * we have to take care of the less function 
+    * */
+
     public static void main(String[] args) {
       //  printNum(10);
         System.out.println( sumRecursive(5));
@@ -33,6 +39,19 @@ public class RecursionProblems {
     }
 
     // check for palindrome using recursion
+
+    public static boolean isPalindromeUsingRecursion(String s,int low,int high){
+        if(low>=high)return true;
+        return (s.charAt(low)==s.charAt(high) && isPalindromeUsingRecursion(s,low+1,high-1));
+    }
+
+    //Rope Cutting problem
+
+    public static int ropeCut(int n,int a,int b,int c){
+        return -1;
+        //find the smallest of a,b,c. then
+    }
+
 
 
 }
