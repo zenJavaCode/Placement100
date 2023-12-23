@@ -1,11 +1,13 @@
 package recursion;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class RecursionProblems {
 
-    public static void main(String[] args) {
-        printNum(10);
 
-    }
 
     //print N to 1 using recursion
 
@@ -18,4 +20,13 @@ public class RecursionProblems {
             printNum(num - 1);
         }
     }
+
+    //Rope cutting problem
+    public static void main(String[] args) {
+        List names = Arrays.asList("Reflection","Collection","Stream");
+        List result = Collections.singletonList(names.stream().sorted().collect(Collectors.toList()));
+
+        System.out.println(result.toString());
+    }
+
 }
