@@ -1,6 +1,8 @@
 package arrays;
 
 
+import java.util.Arrays;
+
 public class ArrayProblems {
 
         public static void main(String[] args) {
@@ -10,6 +12,9 @@ public class ArrayProblems {
                 numbers[2] = 3;
                 numbers[3] = 4;
                 numbers[4] = 5;
+
+                int[] arr = {0,0,0,10,0};
+                moveZerosToEnd(arr);
 
         }
 
@@ -192,7 +197,119 @@ return array;
         * */
 
 
+        public static int largestElementInArray(int[] args) {
+                int max = args[0];
+                for(int i =1;i<args.length;i++){
+                        if(args[i]>max){
+                                max = args[i];
+                        }
+                }
+                return max;
+        }
 
+
+        public static int secondLargestElementInArray(int[] args) {
+                int res = -1, largest =0;
+                if(args.length <2){
+                        return  -1;
+                }
+                for(int i =1;i<args.length;i++){
+                        if(args[i] >args[largest]){
+                                res = largest;
+                                largest=i;
+                        } else if (args[i]<args[largest]  ) {
+                                if(res ==-1 || args[i]>args[res]) res =i;
+                        }
+                }
+                return res;
+        }
+
+        public static boolean checkIfArrayIsSortedOrNot(int[] arr){
+                if(arr.length<2){
+                        return false;
+                }
+                for(int i =1;i<arr.length;i++){
+                        if(arr[i]<arr[i-1]){
+                                return false;
+                        }
+                }
+                return true;
+        }
+
+
+
+        //Reverse Elements of an array.
+
+        public static void reverseAnArray(int[] array){
+
+                int low = 0;
+                int high = array.length-1;
+                while(low<high){
+                        int temp = array[low];
+                        array[low] = array[high];
+                        array[high] = temp;
+                        low++;
+                        high--;
+
+                }
+        }
+
+        public static void moveZerosToEnd(int[] a){
+                //
+                int low = 0;
+                int high = a.length-1;
+
+                while(low<high){
+                        if(a[low]==0 && a[high] ==0) high--;
+                        else if(a[low] ==0 && a[high] !=0){
+                                a[low] = a[high];
+                                a[high] = 0;
+                        }
+                        low++;
+                        high--;
+                }
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //Remove duplicates form sorted array.
+
+        public static void removeDuplicateFormArray(int[] arr) {
+                int[] newArray = new int[arr.length];
+                newArray[0] = arr[0];
+                for (int i = 1; i < arr.length; i++) {
+                        if (arr[i] != arr[i - 1]) {
+                                newArray[i] = arr[i];
+                        }
+                }
+                System.out.println(Arrays.toString(newArray));
+        }
+
+        public static void removeDuplicateFromArrayInConstantSpace(int[] arr){
+                        int writeIndex =1;
+                for(int i =1;i<arr.length;i++){
+                        if(arr[i] != arr[i-1]){
+                                arr[writeIndex] = arr[i];
+                                writeIndex++;
+                        }
+                }
+        }
 
 
 
