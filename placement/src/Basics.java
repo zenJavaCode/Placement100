@@ -1,18 +1,82 @@
+import java.util.Arrays;
+
 public class Basics {
 
     /*TODO:-  Write a Program to Reverse a given Number N by user*/
 
     public static void main(String[] args) {
-        int n = 1834;
-        int results = 0;
+//        int n = 1834;
+//        int results = 0;
+//
+//
+//        while (n != 0) {
+//            int digit = n % 10;
+//            results = results * 10 + digit;
+//            n /= 10;
+//        }
+//        System.out.println(results);
 
+        int[] nums = {1, 1, 2, 2,3};
+//       int num =  getSingleElement(nums);
+//        missingNumber(nums);
+    }
+    public static String read(int n, int []book, int target){
+        // Write your code here.
 
-        while (n != 0) {
-            int digit = n % 10;
-            results = results * 10 + digit;
-            n /= 10;
+        int left = 0;
+        int right = book.length-1;
+        while(left<right){
+            if((book[left] + book[right]) == target){
+                return "YES";
+            }else{
+                left++;
+                right--;
+            }
+
         }
-        System.out.println(results);
+        return "NO";
+    }
+
+
+
+
+
+    public static int getSingleElement(int[] nums) {
+        for(int i =0;i<nums.length-1; i =i+2){
+        if(nums[i] !=nums[i+1]){
+            return nums[i];
+        }
+        }
+        return nums[nums.length-1];
+    }
+
+    public static int consecutiveOnes(int[] nums){
+        int count = 0,ans =0;
+        for(int i =0;i<nums.length;i++){
+            if(nums[i] == 1){
+                count++;
+            }else{
+                ans = Math.max(ans,count);
+                count =0;
+            }
+
+        }
+        return Math.max(ans,count);
+
+
+    }
+
+
+    public static int missingNumber(int[] nums){
+        Arrays.sort(nums);
+        int i =0;
+        for( i =0;i<nums.length;i++){
+            if(nums[i] != i){
+                return i;
+            }
+        }
+        return i+1;
+
     }
 
 
